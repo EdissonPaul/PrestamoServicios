@@ -21,4 +21,20 @@ public class Persona implements Serializable {
 	@Column(name = "PER_NOMBRE")
 	private String nombre;
 
+	@Column(name = "PER_CEDULA")
+	private String cedula;
+	
+	@Column(name = "PER_FOTO")
+	private String foto;
+	
+	@Column(name = "PER_TELEFONO")
+	private String telefono;
+	
+	@Column(name = "PER_CORREO")
+	private String correo;
+	
+	@Column(name = "PER_CONTRASEÑA")
+	private String contraseña;
+	
+	
 }
