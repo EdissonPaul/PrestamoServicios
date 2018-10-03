@@ -18,4 +18,5 @@ public class Pais {
 	
 	@Column(name = "PAI_NOMBRE")
 	private String nombre;
+	
 }
