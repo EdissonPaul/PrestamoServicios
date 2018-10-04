@@ -21,7 +21,7 @@ public class LoginDAO {
 			q.setParameter("mi_usuario", correo);
 			return (Persona)q.getSingleResult();
 		}catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return null;
 		}
 		

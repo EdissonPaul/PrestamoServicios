@@ -10,6 +10,7 @@ import physeter.ventaservicios.modelo.Persona;
 @ManagedBean
 public class PersonaController {
 
+	@Inject
 	private Persona persona;
 	
 	@Inject
@@ -25,6 +26,15 @@ public class PersonaController {
 	private String errorMsg;
 	
 	
+	
+	public String getContraseñaInsertada() {
+		return contraseñaInsertada;
+	}
+
+	public void setContraseñaInsertada(String contraseñaInsertada) {
+		this.contraseñaInsertada = contraseñaInsertada;
+	}
+
 	public Persona getPersona() {
 		return persona;
 	}
@@ -39,10 +49,14 @@ public class PersonaController {
 		errCorreo = "";
 		errCedula ="";
 		errClave = "";
+		System.out.println("entro");
+		//System.out.println(persona.getCorreo());
+		//System.out.println(persona.getContraseña());
 		
 		
 		//validamos correo de la persona
 		String idUsuario = persona.getCorreo();
+		System.out.println(idUsuario);
 		Persona comprobar = (Persona)loginDAO.verificarPersonaCorreo(idUsuario);
 		if(comprobar!=null){
 			errCorreo = "Error, usuario ya registrado.";
@@ -55,6 +69,12 @@ public class PersonaController {
 			errClave = "Contraseñas no coinciden";
 			errorMsg="Contraseñas no coinciden.";
 			System.out.println(errClave);
+		}
+		
+		
+		if(errCorreo.equals("")&&errClave.equals("")){
+			System.out.println("entro");
+			
 		}
 		
 		return null;
