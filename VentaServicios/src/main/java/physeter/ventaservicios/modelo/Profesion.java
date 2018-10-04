@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Profesion implements Serializable{
@@ -23,5 +26,11 @@ public class Profesion implements Serializable{
 	
 	@Column(name = "PROF_CODIGO_TITULO")
 	private String codigoTitulo;
+	
+	
+	@ManyToOne
+	@JoinColumn(name ="PER_ID")
+	private Persona persona;
+	
 	
 }

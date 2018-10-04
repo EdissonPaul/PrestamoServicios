@@ -7,6 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Servicio implements Serializable{
@@ -32,5 +36,13 @@ public class Servicio implements Serializable{
 	
 	@Column(name = "SER_DIRECCION")
 	private String direccion;
+	
+	@ManyToOne
+	@JoinColumn(name="PER_ID")
+	private Persona persona;
+	
+	@ManyToOne
+	@JoinColumn(name="CIU_ID")
+	private Ciudad ciudad;
 	
 }
