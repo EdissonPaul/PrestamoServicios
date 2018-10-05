@@ -1,5 +1,9 @@
 package physeter.ventaservicios.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
@@ -20,6 +24,15 @@ public class SesionController {
 	
 	@Inject
 	private PersonaDAO personaDAO;
+	
+	private List<Persona> listPersonas;
+	
+	@PostConstruct
+	public void init() {
+		
+		listPersonas = new ArrayList<Persona>();
+		
+	}
 	
 	
 	public String logeoPersona(){

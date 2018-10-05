@@ -1,6 +1,7 @@
 package physeter.ventaservicios.controller;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.inject.Inject;
 
 import physeter.ventaservicios.DAO.LoginDAO;
@@ -8,6 +9,7 @@ import physeter.ventaservicios.DAO.PersonaDAO;
 import physeter.ventaservicios.modelo.Persona;
 
 @ManagedBean
+@RequestScoped
 public class PersonaController {
 
 	@Inject
@@ -43,20 +45,18 @@ public class PersonaController {
 		this.persona = persona;
 	}
 
-
+	/**
+	 * Validar Datos de Registri Correo y Contraseña
+	 * @return
+	 */
 	public String validarDatosRegistro(){
 		
 		errCorreo = "";
-		errCedula ="";
 		errClave = "";
-		System.out.println("entro");
-		//System.out.println(persona.getCorreo());
-		//System.out.println(persona.getContraseña());
-		
+		errCedula="";
 		
 		//validamos correo de la persona
 		String idUsuario = persona.getCorreo();
-		System.out.println(idUsuario);
 		Persona comprobar = (Persona)loginDAO.verificarPersonaCorreo(idUsuario);
 		if(comprobar!=null){
 			errCorreo = "Error, usuario ya registrado.";
@@ -64,6 +64,7 @@ public class PersonaController {
 			System.out.println(errorMsg);
 		}
 		
+		//validamos la contraseña
 		String idContraseña = persona.getContraseña();
 		if(!idContraseña.equals(contraseñaInsertada)&&idContraseña.length()>0&&contraseñaInsertada.length()>0){
 			errClave = "Contraseñas no coinciden";
@@ -71,14 +72,29 @@ public class PersonaController {
 			System.out.println(errClave);
 		}
 		
-		
-		if(errCorreo.equals("")&&errClave.equals("")){
-			System.out.println("entro");
-			
+		// validamos cedula
+		String idCedula = persona.getCedula();
+		if(idCedula.length()!=10){
+			errCedula = "Error, cantidad de digitos incorrectos en la cedula.";
+			errorMsg="Error, cedula incorrecta.";
+		}else{
+			Persona personaCedula = personaDAO.verificarCedula(idCedula);
+			if(personaCedula!=null){
+				errorMsg="Error, cedula ya registrada.";
+				errCedula="Error, cedula ya registrada.";
+			}
+			if(!validarCedula(idCedula)){
+				errorMsg="Error, cedula incorrecta.";
+				errCedula="Error, cedula incorrecta.";
+			}
+		}	
+		if(errCorreo.equals("")&&errClave.equals("")&&errCedula.equals("")){
+			String pagina = registrarPersona();
+			return pagina;
 		}
-		
 		return null;
 	}
+	
 	
 	public String registrarPersona(){
 		boolean res;
@@ -93,4 +109,48 @@ public class PersonaController {
 		
 		return null;
 	}
+	
+	
+	public boolean validarCedula(String cedula) {
+	    int suma=0;
+	    if(cedula.length()==9){
+	      System.out.println("Ingrese su cedula de 10 digitos");
+	      return false;
+	    }else{
+	      int a[]=new int [cedula.length()/2];
+	      int b[]=new int [(cedula.length()/2)];
+	      int c=0;
+	      int d=1;
+	      for (int i = 0; i < cedula.length()/2; i++) {
+	        a[i]=Integer.parseInt(String.valueOf(cedula.charAt(c)));
+	        c=c+2;
+	        if (i < (cedula.length()/2)-1) {
+	          b[i]=Integer.parseInt(String.valueOf(cedula.charAt(d)));
+	          d=d+2;
+	        }
+	      }
+	    
+	      for (int i = 0; i < a.length; i++) {
+	        a[i]=a[i]*2;
+	        if (a[i] >9){
+	          a[i]=a[i]-9;
+	        }
+	        suma=suma+a[i]+b[i];
+	      } 
+	      int aux=suma/10;
+	      int dec=(aux+1)*10;
+	      if ((dec - suma) == Integer.parseInt(String.valueOf(cedula.charAt(cedula.length()-1))))
+	        return true;
+	      else
+	        if(suma%10==0 && cedula.charAt(cedula.length()-1)=='0'){
+	          return true;
+	        }else{
+	          return false;
+	        }
+	     
+	  
+}
+	    
+
+}
 }

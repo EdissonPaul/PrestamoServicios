@@ -6,7 +6,6 @@
 
 <h:head></h:head> 
 <body> 
-
 	<h:form>
 	  
 	Nombre <h:inputText value="#{personaController.persona.nombre}" />
@@ -14,28 +13,21 @@
 	
 	Telefono <h:inputText value="#{personaController.persona.telefono}" />
 	<br />
-	
-	Correo <h:inputText value="#{personaController.persona.correo}" />
-	<br />
 	 
-	Cedula <h:inputText value="#{personaController.persona.cedula}" />
+	Cedula <h:inputText value="#{personaController.persona.cedula}"  />
 	<br />
 	
-	<!--    
+	
+	
+	
 	Foto <h:inputText value="#{personaController.persona.foto}" />
 	<br />
-	-->
-	 
-	Contraseña <h:inputText value="#{personaController.persona.contraseña}" />
+	<h:inputText value="#{personaController.persona.correo}"  style="visibility:hidden"/>
 	<br />
-	
-	Repita Contraseña <h:inputText value="#{personaController.contraseñaInsertada}" />
+	<h:inputText value="#{personaController.persona.contraseña}" style="visibility:hidden"/>
 	<br />
-	
-	<h:commandButton action="#{personaController.validarDatosRegistro()}" value="Registrar" />
-	
-	
+	<h:commandButton action="#{personaController.finalizarRegistro()}" value="Finalizar Registro" />
+				
 	</h:form>
-
 </body> 
 </html>
