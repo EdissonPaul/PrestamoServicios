@@ -28,5 +28,22 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="src/main/webapp/resources/librerias/commons-beanutils-1.8.3.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/resources/librerias/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/resources/librerias/commons-digester-1.8.1.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/resources/librerias/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/resources/librerias/cors-filter-2.6.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/resources/librerias/groovy-all-1.0-beta-10.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/resources/librerias/ireport.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/resources/librerias/itext-pdfa-5.5.5.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/resources/librerias/itextpdf-5.5.5.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/resources/librerias/jasperreports-6.0.3.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/resources/librerias/java-property-utils-1.9.1.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/resources/librerias/javax.mail.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/resources/librerias/plsqlexecuter.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/resources/librerias/primefaces-6.1-sources.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/resources/librerias/primefaces-6.1.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/primefaces-6.1-sources.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/primefaces-6.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

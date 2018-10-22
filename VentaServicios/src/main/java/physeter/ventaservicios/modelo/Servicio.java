@@ -43,6 +43,79 @@ public class Servicio implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name="CIU_ID")
-	private Ciudad ciudad;
+	private Provincia ciudad;
+	
+	@ManyToOne
+	@JoinColumn(name="CAT_ID")
+	private Categorias categoria;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public String getExperiencia() {
+		return experiencia;
+	}
+
+	public void setExperiencia(String experiencia) {
+		this.experiencia = experiencia;
+	}
+
+	public String getHablidades() {
+		return hablidades;
+	}
+
+	public void setHablidades(String hablidades) {
+		this.hablidades = hablidades;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public Persona getPersona() {
+		return persona;
+	}
+
+	public void setPersona(Persona persona) {
+		this.persona = persona;
+	}
+
+	public Provincia getCiudad() {
+		return ciudad;
+	}
+
+	public void setCiudad(Provincia ciudad) {
+		this.ciudad = ciudad;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
 	
 }

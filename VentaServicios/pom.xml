@@ -59,6 +59,14 @@
         <maven.compiler.source>1.7</maven.compiler.source>
     </properties>
 
+	<repositories>
+		<repository>
+			<id>prime-repo</id>
+			<name>PrimeFaces Maven Repository</name>
+			<url>http://repository.primefaces.org</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
 
     <dependencyManagement>
         <dependencies>
@@ -84,9 +92,14 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            
+            <dependency>
+				<groupId>org.primefaces</groupId>
+				<artifactId>primefaces</artifactId>
+				<version>6.2</version>
+		</dependency>
         </dependencies>
     </dependencyManagement>
-
     <dependencies>
 
         <!-- First declare the APIs we depend on and need for compilation. All 

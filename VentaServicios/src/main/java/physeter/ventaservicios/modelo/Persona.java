@@ -1,6 +1,8 @@
 package physeter.ventaservicios.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -40,11 +42,17 @@ public class Persona implements Serializable {
 	@Column(name = "PER_CONTRASEÑA")
 	private String contraseña;
 	
-	@OneToMany(mappedBy="persona",cascade=CascadeType.ALL)
-	private Set<Profesion> profesion;
+	@Column(name = "PER_EDAD")
+	private Date edad;
+	
+	@Column(name = "PER_GENERO")
+	private String genero;
 	
 	@OneToMany(mappedBy="persona",cascade=CascadeType.ALL)
-	private Set<Servicio> servicio;
+	private List<Profesion> profesion = new ArrayList<Profesion>();
+	
+	@OneToMany(mappedBy="persona",cascade=CascadeType.ALL)
+	private List<Servicio> servicio;
 
 	public int getId() {
 		return id;
@@ -102,24 +110,41 @@ public class Persona implements Serializable {
 		this.contraseña = contraseña;
 	}
 
-	public Set<Profesion> getProfesion() {
+	public List<Profesion> getProfesion() {
 		return profesion;
 	}
 
-	public void setProfesion(Set<Profesion> profesion) {
+	public void setProfesion(List<Profesion> profesion) {
 		this.profesion = profesion;
 	}
 
-	public Set<Servicio> getServicio() {
+	public List<Servicio> getServicio() {
 		return servicio;
 	}
 
-	public void setServicio(Set<Servicio> servicio) {
+	public void setServicio(List<Servicio> servicio) {
 		this.servicio = servicio;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	
+	public Date getEdad() {
+		return edad;
+	}
+
+	public void setEdad(Date edad) {
+		this.edad = edad;
+	}
+
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
 	}
 	
 	

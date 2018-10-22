@@ -1,25 +1,36 @@
 package physeter.ventaservicios.controller;
 
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 import physeter.ventaservicios.DAO.LoginDAO;
 import physeter.ventaservicios.DAO.PersonaDAO;
 import physeter.ventaservicios.modelo.Persona;
+import physeter.ventaservicios.modelo.Profesion;
 
-@ManagedBean
-@RequestScoped
-public class PersonaController {
+@ManagedBean(name="personaController")
+@SessionScoped
+public class PersonaController implements Serializable{
 
 	@Inject
 	private Persona persona;
+	
+	@Inject
+	private Profesion Profesion;
+	
+	@Inject
+	private SesionRegistroController sesionRegistroController;
 	
 	@Inject
 	private PersonaDAO personaDAO;
 	
 	@Inject
 	private LoginDAO loginDAO;
+	
 	
 	private String errCorreo;
 	private String errCedula;
@@ -29,6 +40,14 @@ public class PersonaController {
 	
 	
 	
+	public Profesion getProfesion() {
+		return Profesion;
+	}
+
+	public void setProfesion(Profesion profesion) {
+		Profesion = profesion;
+	}
+
 	public String getContraseñaInsertada() {
 		return contraseñaInsertada;
 	}
@@ -43,6 +62,14 @@ public class PersonaController {
 
 	public void setPersona(Persona persona) {
 		this.persona = persona;
+	}
+	
+	public SesionRegistroController getSesionRegistroController() {
+		return sesionRegistroController;
+	}
+
+	public void setSesionRegistroController(SesionRegistroController sesionRegistroController) {
+		this.sesionRegistroController = sesionRegistroController;
 	}
 
 	/**
@@ -89,8 +116,13 @@ public class PersonaController {
 			}
 		}	
 		if(errCorreo.equals("")&&errClave.equals("")&&errCedula.equals("")){
-			String pagina = registrarPersona();
-			return pagina;
+			//profesionController.validarDatosRegistro(persona);
+			System.out.println(persona.getCorreo()+" .. uno");
+			sesionRegistroController.setUser(persona);
+			return "registrodatos";
+			//String pagina = registrarPersona();
+			//return pagina;
+			//System.out.println("entro");
 		}
 		return null;
 	}
@@ -103,10 +135,10 @@ public class PersonaController {
 		if(res){
 			System.out.println("Persona insertado");
 			errorMsg="Registro exitoso";
+			return "registrodatos";
 		}else{
 			System.out.println("Persona NO insertado");
 		}
-		
 		return null;
 	}
 	

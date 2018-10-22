@@ -27,10 +27,68 @@ public class Profesion implements Serializable{
 	@Column(name = "PROF_CODIGO_TITULO")
 	private String codigoTitulo;
 	
+	@Column(name = "PROF_PROFESION")
+	private String profesion;
+	
 	
 	@ManyToOne
 	@JoinColumn(name ="PER_ID")
 	private Persona persona;
+
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+
+	public String getCodigoTitulo() {
+		return codigoTitulo;
+	}
+
+
+	public void setCodigoTitulo(String codigoTitulo) {
+		this.codigoTitulo = codigoTitulo;
+	}
+
+
+	public String getProfesion() {
+		return profesion;
+	}
+
+
+	public void setProfesion(String profesion) {
+		this.profesion = profesion;
+	}
+
+
+	public Persona getPersona() {
+		return persona;
+	}
+
+
+	public void setPersona(Persona persona) {
+		this.persona = persona;
+	}
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	
 	
 }

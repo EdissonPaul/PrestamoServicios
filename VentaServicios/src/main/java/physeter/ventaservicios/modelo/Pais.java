@@ -1,8 +1,10 @@
 package physeter.ventaservicios.modelo;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,8 +26,7 @@ public class Pais implements Serializable {
 	@Column(name = "PAI_NOMBRE")
 	private String nombre;
 	
-	@OneToMany
-	@JoinColumn(name="CIU_ID")
-	private Set<Ciudad> ciudad;
+	@OneToMany(mappedBy="pais",cascade=CascadeType.ALL)
+	private List<Provincia> provincia;
 	
 }

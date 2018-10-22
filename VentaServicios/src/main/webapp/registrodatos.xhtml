@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head></h:head> 
+<body> 
+	<h:form>
+		profesion <h:inputText value="#{profesionController.profesion.profesion}" />
+		<br />
+		titulo <h:inputText value="#{profesionController.profesion.titulo}" />
+		<br />
+		descripcion <h:inputText value="#{profesionController.servicio.descripcion}" />
+		<br />
+		experiencia <h:inputText value="#{profesionController.servicio.experiencia}" />
+		<br />
+		hablidades <h:inputText value="#{profesionController.servicio.hablidades}" />
+		<br />
+		telefono <h:inputText value="#{profesionController.servicio.telefono}" />
+		<br />
+		direccion <h:inputText value="#{profesionController.servicio.direccion}" />
+		<br />
+		
+		edad <h:inputText value="#{profesionController.personaController.persona.edad}" >
+				<f:convertDateTime pattern="dd/MM/yyyy"/>
+			</h:inputText>
+		<br />
+
+    <!--      
+        <p:outputLabel for="mask" value="Edad:" />
+        <p:calendar id="mask" value="#{profesionController.personaController.persona.edad}" pattern="dd-MM-yyyy" mask="true" /> 
+    -->
+		<br />
+		genero <h:inputText value="#{profesionController.personaController.persona.genero}" />
+		<br />
+		<h:commandButton action="#{profesionController.validarDatosRegistro()}" value="Siguiente" />
+	<br />
+	</h:form>
+	 
+</body> 
+</html>

@@ -9,16 +9,18 @@
 
 	<h:form>
 	  
-	Nombre <h:inputText value="#{personaController.persona.nombre}" />
+	Nombre <h:inputText required="true" value="#{personaController.persona.nombre}" />
 	<br />
 	
-	Telefono <h:inputText value="#{personaController.persona.telefono}" />
+	Telefono <h:inputText required="true" value="#{personaController.persona.telefono}" />
 	<br />
 	
-	Correo <h:inputText value="#{personaController.persona.correo}" />
+	Correo <h:inputText required="true" value="#{personaController.persona.correo}" >
+		 <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+	</h:inputText>
 	<br />
 	 
-	Cedula <h:inputText value="#{personaController.persona.cedula}" />
+	Cedula <h:inputText required="true" value="#{personaController.persona.cedula}" />
 	<br />
 	
 	<!--    
@@ -26,10 +28,10 @@
 	<br />
 	-->
 	 
-	Contraseña <h:inputText value="#{personaController.persona.contraseña}" />
+	Contraseña <h:inputText required="true" value="#{personaController.persona.contraseña}" />
 	<br />
 	
-	Repita Contraseña <h:inputText value="#{personaController.contraseñaInsertada}" />
+	Repita Contraseña <h:inputText required="true" value="#{personaController.contraseñaInsertada}" />
 	<br />
 	
 	<h:commandButton action="#{personaController.validarDatosRegistro()}" value="Registrar" />
