@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<ui:composition template="/WEB-INF/plantillap.xhtml">
+<ui:define name="title">
+YoDoctor's
+</ui:define>
+<ui:define name="contenido"> 
+
+<body> 
+	<h:form>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		
+		Bienvenid@: <h:outputText value="#{sesionController.persona.nombre}" /> a perfil de prestamo de servicio!!
+	</h:form>
+
+</body> 
+
+</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+       
+<ui:composition template="/WEB-INF/plantillap.xhtml">
+<ui:define name="title">
+
+</ui:define>
+<ui:define name="contenido"> 
+
+
+<body> 
+<br/><br/><br/><br/><br/>
+
+	<h:form id="form">
+		<p:dataTable var="med" value="#{serviciobean.allData}" widgetVar="serviciosTabla"
+                 emptyMessage="No se encuentran los medicos" filteredValue="#{serviciobean.servicioFiltrado}">
+                  <f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Buscar todos los campos:" />
+                <p:inputText id="globalFilter" onkeyup="PF('seriviciosTabla').filter()" style="width:150px" placeholder="Enter keyword"/>
+            </p:outputPanel>
+            </f:facet>
+            <p:column filterBy="#{med.categoria.nombre}" headerText="Categorias" footerText="contains" filterMatchMode="contains">
+            <h:outputText value="#{med.categoria.nombre}" />
+       		</p:column>
+        	<p:column filterBy="#{med.ciudad.nombre}" headerText="Ciudad" footerText="contains" filterMatchMode="contains">
+            <h:outputText value="#{med.ciudad.nombre}" />
+       		</p:column>
+       		<p:column filterBy="#{med.descripcion}" headerText="Descripcion" footerText="contains" filterMatchMode="contains">
+            <h:outputText value="#{med.descripcion}" />
+       		</p:column>
+	        <p:column> 
+			<p:commandButton value="Mas Informacion" onclick="PF('dlg').show();" type="button" />
+			</p:column>
+  		</p:dataTable> 
+	
+		<p:dialog header="Info del Servicio" widgetVar="dlg2" modal="true"  resizable="true">
+    	
+		<h:outputText value="This is a Modal Dialog." />
+	
+		</p:dialog> 
+		
+		
+       <p:dialog header="Dialog" widgetVar="dlg" dynamic="true">
+         <h:dataTable value="#{serviciobean.allData}" var="con" class="table">
+		<h:column>
+			<f:facet name="header">Nombre</f:facet>
+			#{con.persona.nombre}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Apellido</f:facet>
+			#{con.persona.apellido}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Telefono</f:facet>
+			#{con.persona.telefono}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Experiencia</f:facet>
+			#{con.experiencia}
+		</h:column>
+		</h:dataTable>
+       </p:dialog>
+	</h:form>
+
+</body> 
+
+</ui:define> 
+</ui:composition>
+</html>

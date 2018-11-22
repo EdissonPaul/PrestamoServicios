@@ -89,21 +89,26 @@ public class PersonaDAO {
 	 * @param contraseña
 	 * @return
 	 */
-	public List<Persona> buscarPersona(String correo, String contraseña) {
+	public Persona buscarPersona(String correo, String contrasena) {
 		
 		
 		try {
-			Query query = em.createQuery("SELECT u FROM Persona u WHERE u.correo = :correo and u.contraseña = :contraseña",Persona.class);
+			Query query = em.createQuery("SELECT a FROM Persona a WHERE correo = :correo AND contrasena = :contrasena",Persona.class);
 			
 			query.setParameter("correo", correo);
-			query.setParameter("contraseña", contraseña);
+			query.setParameter("contrasena", contrasena);
 			
-			List<Persona> p= query.getResultList();
-			if (p!= null)
-				return p;
+			Persona p= (Persona)query.getSingleResult();
+			
+			if (p!= null){
+				return  p;
+			}
+				
+			return null;
+		}
+		catch (Exception e){
 			
 		}
-		catch (Exception e){}
 		
 		return null;
 	}

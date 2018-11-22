@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Servicio implements Serializable{
@@ -41,13 +44,18 @@ public class Servicio implements Serializable{
 	@JoinColumn(name="PER_ID")
 	private Persona persona;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="CIU_ID")
-	private Provincia ciudad;
+	@JsonIgnore
+	private Ciudad ciudad;
 	
 	@ManyToOne
 	@JoinColumn(name="CAT_ID")
 	private Categorias categoria;
+	
+	@ManyToOne
+	@JoinColumn(name="REV_ID")
+	private Revision revision;
 
 	public int getId() {
 		return id;
@@ -105,12 +113,23 @@ public class Servicio implements Serializable{
 		this.persona = persona;
 	}
 
-	public Provincia getCiudad() {
+	
+	
+
+	public Ciudad getCiudad() {
 		return ciudad;
 	}
 
-	public void setCiudad(Provincia ciudad) {
+	public void setCiudad(Ciudad ciudad) {
 		this.ciudad = ciudad;
+	}
+
+	public Categorias getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categorias categoria) {
+		this.categoria = categoria;
 	}
 
 	public static long getSerialversionuid() {

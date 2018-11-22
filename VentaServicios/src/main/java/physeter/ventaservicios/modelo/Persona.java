@@ -9,6 +9,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,6 +27,9 @@ public class Persona implements Serializable {
 	
 	@Column(name = "PER_NOMBRE")
 	private String nombre;
+	
+	@Column(name = "PER_APELLIDO")
+	private String apellido;
 
 	@Column(name = "PER_CEDULA")
 	private String cedula;
@@ -39,8 +43,8 @@ public class Persona implements Serializable {
 	@Column(name = "PER_CORREO")
 	private String correo;
 	
-	@Column(name = "PER_CONTRASEÑA")
-	private String contraseña;
+	@Column(name = "PER_CONTRASENA")
+	private String contrasena;
 	
 	@Column(name = "PER_EDAD")
 	private Date edad;
@@ -102,12 +106,14 @@ public class Persona implements Serializable {
 		this.correo = correo;
 	}
 
-	public String getContraseña() {
-		return contraseña;
+	
+
+	public String getContrasena() {
+		return contrasena;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
 
 	public List<Profesion> getProfesion() {
@@ -145,6 +151,14 @@ public class Persona implements Serializable {
 
 	public void setGenero(String genero) {
 		this.genero = genero;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 	
 	

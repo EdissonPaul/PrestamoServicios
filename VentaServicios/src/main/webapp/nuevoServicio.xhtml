@@ -2,21 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"> 
-      
- <ui:composition template="/WEB-INF/templateInicial.xhtml">
- <ui:define name="title">
-  <br />
- <br />
- <br />
- <br />
-    Registro
- </ui:define>
- <ui:define name="content"> 
+      xmlns:h="http://java.sun.com/jsf/html"> 
+<ui:composition template="/WEB-INF/plantillap.xhtml">
+<ui:define name="title">
+</ui:define>
+<ui:define name="contenido"> 
 
 <h:head></h:head> 
 <body> 
+	<br />
+	<br />
+	<br />
 	<h:form>
 		profesion <h:inputText value="#{profesionController.profesion.profesion}" />
 		<br />
@@ -30,29 +26,6 @@
 		<br />
 		telefono <h:inputText value="#{profesionController.servicio.telefono}" />
 		<br />
-		direccion <h:inputText value="#{profesionController.servicio.direccion}" />
-		<br />
-		edad <h:inputText value="#{profesionController.sesionRegistroController.user.edad}" >
-				<f:convertDateTime pattern="dd/MM/yyyy"/>
-			</h:inputText>
-		<!--  
-		edad <h:inputText value="#{profesionController.personaController.persona.edad}" >
-				<f:convertDateTime pattern="dd/MM/yyyy"/>
-			</h:inputText>
-		<br />
-		-->
-    <!--      
-        <p:outputLabel for="mask" value="Edad:" />
-        <p:calendar id="mask" value="#{profesionController.personaController.persona.edad}" pattern="dd-MM-yyyy" mask="true" /> 
-    
-		<br />
-	-->
-		genero <h:inputText value="#{profesionController.sesionRegistroController.user.genero}" />
-		<br />
-	<!--
-		genero <h:inputText value="#{profesionController.personaController.persona.genero}" />
-		<br />
-	-->	
 		<div>
 		<h:outputLabel value="Categoria"/>
 		<div>
@@ -64,9 +37,6 @@
 		</div>
 		</div>
 		<br />
-		
-		<br/>
-		
 		<div >
 		<h:outputLabel  value="Provincia" />
 		<div >
@@ -89,17 +59,11 @@
 		</h:selectOneMenu>
 		</div>
 		</div>
-		
 		<br />
-		<h:outputText value="#{profesionController.provincia}" />
-		<br />
-		<h:commandButton action="#{profesionController.validarDatosRegistro()}" value="Siguiente" />
-		<br />
-		
+		<h:commandButton action="#{profesionController.validarDatosRegistro()}" value="Registrar" />
+	
 	</h:form>
-
 </body>
-
-</ui:define>
-</ui:composition>
+</ui:define> 
+</ui:composition> 
 </html>

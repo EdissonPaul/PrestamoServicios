@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+      
+ <ui:composition template="/WEB-INF/templateInicial.xhtml">
+ <ui:define name="title">
+ <br />
+ <br />
+ <br />
+ <br />
+    Registro
+ </ui:define>
+ <ui:define name="content"> 
+
+<h:head></h:head> 
+<body>
+	<h:form id="formulario">
+		
+		Nombre <h:inputText required="true" value="#{personaController.persona.nombre}" />
+		<br />
+		
+		Apellido <h:inputText required="true" value="#{personaController.persona.apellido}" />
+		<br />
+		
+		Telefono <h:inputText required="true" value="#{personaController.persona.telefono}" />
+		<br />
+		
+		Correo <h:inputText required="true" value="#{personaController.persona.correo}" >
+			 <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+		</h:inputText>
+		<br />
+		 
+		Cedula <h:inputText required="true" value="#{personaController.persona.cedula}" />
+		<br />
+		 
+		Contraseña <h:inputText required="true" value="#{personaController.persona.contrasena}" />
+		<br />
+		
+		Repita Contraseña <h:inputText required="true" value="#{personaController.contraseñaInsertada}" />
+		<br />
+		
+		<h:commandButton action="#{personaController.validarDatosRegistro()}" value="Registrar" />
+		
+		
+	</h:form> 
+</body> 
+ </ui:define>
+ 
+</ui:composition> 
+</html>

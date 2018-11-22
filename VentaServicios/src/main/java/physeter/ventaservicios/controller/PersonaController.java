@@ -2,6 +2,7 @@ package physeter.ventaservicios.controller;
 
 import java.io.Serializable;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
@@ -16,6 +17,8 @@ import physeter.ventaservicios.modelo.Profesion;
 @SessionScoped
 public class PersonaController implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+	
 	@Inject
 	private Persona persona;
 	
@@ -71,6 +74,12 @@ public class PersonaController implements Serializable{
 	public void setSesionRegistroController(SesionRegistroController sesionRegistroController) {
 		this.sesionRegistroController = sesionRegistroController;
 	}
+	
+	@PostConstruct
+	public void init(){
+		persona = new Persona();
+		
+	}
 
 	/**
 	 * Validar Datos de Registri Correo y Contraseña
@@ -92,7 +101,7 @@ public class PersonaController implements Serializable{
 		}
 		
 		//validamos la contraseña
-		String idContraseña = persona.getContraseña();
+		String idContraseña = persona.getContrasena();
 		if(!idContraseña.equals(contraseñaInsertada)&&idContraseña.length()>0&&contraseñaInsertada.length()>0){
 			errClave = "Contraseñas no coinciden";
 			errorMsg="Contraseñas no coinciden.";
@@ -178,11 +187,23 @@ public class PersonaController implements Serializable{
 	          return true;
 	        }else{
 	          return false;
-	        }
-	     
-	  
-}
-	    
-
-}
+	        }  
+	    }
+	    }
+	
+	public String actualizar(int id){
+		persona = personaDAO.leer(id);
+		System.out.println(persona.getCedula()+"   ....  ....");
+		return "editarPersona";
+	}
+	
+	public String editarPersona(){
+		personaDAO.actualizar(persona);
+		return null;
+	}
+	
+	public String logout(){
+		persona = null;
+		return null;
+	}
 }

@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://java.sun.com/jsf/html"> 
+
+<ui:composition template="/WEB-INF/templateInicial.xhtml">
+    <ui:define name="title">
+    <br />
+    <br />
+    <br />
+    <br />
+    Pagina Inicial
+    </ui:define>
+    <ui:define name="content">
+    	Bienvenido a la App <a href="#{app.path}/acerca.jsf" ><b>Prestamos de Servicios</b></a><br />
+    	Colocar aqui informacion sobre la app, las caracteristicas, lo que permite hacer<br />
+    	Un enlace para descargar la app para android, etc..
+		<h:form>
+			<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+		</h:form>
+
+    </ui:define>
+ 
+</ui:composition> 
+</html>

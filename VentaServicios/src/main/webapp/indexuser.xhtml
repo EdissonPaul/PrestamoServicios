@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body> 
+
+	<h:form>
+		<h:dataTable id="tabProv" class="table table-striped"  styleClass="employeeTable" headerClass="employeeTableHeader"    width="50px" 
+	value="#{profesionController.listServicio}" var="servicio"> <!--Rendered, si quiero se muestre  -->
+	
+			<h:column>
+		<article id="post-928" class="post-928 post type-post status-publish format-gallery post-password-required hentry category-home-decor category-modern-style tag-modern-living post_format-post-format-gallery has-featured list-2-column">
+			<div class="blog-item">
+			
+			<div class="noo-property-item noo-md-6">
+			<div class="noo-property-item-wrap">
+			<div class="noo-item-head">
+			<h4 class="item-title">
+			<i class="ion-bookmark">Image Propertie</i> 
+			</h4>
+			<span class="location">
+			 #{servicio.ciudad.nombre}</span>
+			</div>
+			<div class="noo-item-featured">
+			
+			
+			<span class="property-status">#{servicio.categoria.nombre}</span> </div>
+			
+			<div class="noo-action">
+			
+			</div>
+			</div>
+			</div>
+			
+			
+			<div class="wrap-entry">
+
+				<header class="entry-header">
+				<h2>
+				DEscripción: <a href="detalle.xhtml?id=#{servicio.id}" > #{servicio.descripcion} </a>
+				</h2>
+				<span class="tag-date">
+				<span>06</span>
+				<span>Sep</span>
+				</span>
+				<div class="item-info">
+				
+				<div class="noo-item-head">
+					<h4 class="item-title">
+					<i class="ion-bookmark">Featured</i> <a href="detalle.xhtml?id=#{servicio.descripcion}">
+					#{servicio.descripcion} </a>
+					</h4>
+					
+					</div>
+				</div>
+				</header>
+				
+				
+				<div class="entry-content">
+				<p>There is no excerpt because this is a protected post.</p>
+				Dirección: <span class="location">
+					 #{servicio.ciudad.nombre}</span>
+				<BR />	 
+				<span class="before-price"></span> <span class="amount"><span class="format_price">&#036; </span>#{servicio.hablidades}</span> <span class="after-price"></span> 
+					 
+				</div>
+				
+				
+				<footer class="entry-footer">
+				<a href="detalle.xhtml?id=#{servicio.id}" class="noo-button read-more">VER MAS DETALLE</a>
+				
+				
+				</footer>
+				
+				</div>
+			
+
+			
+		
+		
+			</div> 
+</article>
+			
+		</h:column>		
+
+	</h:dataTable>
+	</h:form>
+</body> 
+</html>
