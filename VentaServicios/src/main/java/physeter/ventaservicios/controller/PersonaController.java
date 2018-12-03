@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import javax.servlet.http.Part;
@@ -30,6 +30,9 @@ public class PersonaController implements Serializable{
 	
 	@Inject
 	private SesionRegistroController sesionRegistroController;
+	
+	@ManagedProperty("#{sesionController}")
+	private SesionController sesionController;
 	
 	@Inject
 	private PersonaDAO personaDAO;
@@ -83,6 +86,14 @@ public class PersonaController implements Serializable{
 	
 	
 	
+
+	public SesionController getSesionController() {
+		return sesionController;
+	}
+
+	public void setSesionController(SesionController sesionController) {
+		this.sesionController = sesionController;
+	}
 
 	public Part getFile() {
 		return file;
@@ -215,7 +226,9 @@ public class PersonaController implements Serializable{
 	}
 	
 	public String editarPersona(){
-		personaDAO.actualizar(persona);
+		personaDAO.guardar(persona);
+		sesionController.setPersona(persona);
+		init();
 		return null;
 	}
 	
