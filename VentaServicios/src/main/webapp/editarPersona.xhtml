@@ -14,7 +14,7 @@
 	<h3>Edición de Datos Personales</h3>
 	<p>
 	</p>
-	<h:form id="formulario">
+	<h:form id="formulario" enctype="multipart/form-data">
 	
 		<br />
 		<br />
@@ -22,9 +22,12 @@
 		Nombres:<h:inputText id="idNombres" value="#{personaController.persona.nombre}"/>
 		Apellidos:<h:inputText id="idApellido" value="#{personaController.persona.apellido}"/>
 		Genero:<h:inputText id="idGenero" value="#{personaController.persona.genero}"/>
+		<h:inputFile id="img"  value="#{personaController.file}"/>
 		
 		<br />
 		<h:commandButton styleClass="btn btn-success" value="Guardar" action="#{personaController.editarPersona()}"/>
+		<br />
+		<h:commandButton action="#{personaController.cargarImagen()}" value="Cargar Imagen" />
 		
 	</h:form>
 </body> 

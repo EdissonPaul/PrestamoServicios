@@ -3,17 +3,10 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"> 
-<ui:composition template="/WEB-INF/plantillap.xhtml">
-<ui:define name="title">
-</ui:define>
-<ui:define name="contenido"> 
 
 <h:head></h:head> 
 <body> 
-	<br />
-	<br />
-	<br />
-	<h:form>
+<h:form>
 		profesion <h:inputText value="#{registroDatosController.profesion.profesion}" />
 		<br />
 		titulo <h:inputText value="#{registroDatosController.profesion.titulo}" />
@@ -25,6 +18,14 @@
 		hablidades <h:inputText value="#{registroDatosController.servicio.hablidades}" />
 		<br />
 		telefono <h:inputText value="#{registroDatosController.servicio.telefono}" />
+		<br />
+		direccion <h:inputText value="#{registroDatosController.servicio.direccion}" />
+		<br />
+		edad <h:inputText value="#{registroDatosController.sesionRegistroController.user.edad}" >
+				<f:convertDateTime pattern="dd/MM/yyyy"/>
+			</h:inputText>
+		<br />
+		genero <h:inputText value="#{registroDatosController.sesionRegistroController.user.genero}" />
 		<br />
 		<div>
 		<h:outputLabel value="Categoria"/>
@@ -49,7 +50,6 @@
 		</div>
 		
 		<br />
-		
 		<div >
 		<h:outputLabel value="Ciudad"  />
 		<div>
@@ -59,11 +59,12 @@
 		</h:selectOneMenu>
 		</div>
 		</div>
-		<br />
-		<h:commandButton action="#{registroDatosController.probar1()}" value="Registrar" />
-	
-	</h:form>
-</body>
-</ui:define> 
-</ui:composition> 
+		
+		
+		<br/>
+
+	<h:commandButton action="#{registroDatosController.probar()}" value="probar" />
+</h:form>
+
+</body> 
 </html>

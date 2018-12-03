@@ -34,19 +34,17 @@
             <h:outputText value="#{med.descripcion}" />
        		</p:column>
 	        <p:column> 
-			<p:commandButton value="Mas Informacion" onclick="PF('dlg').show();" type="button" />
+			<p:commandButton id="more" value="Mas Informacion" onclick="PF('dlg').show();"  >
+			<f:ajax render="findServicio" execute="more" listener="#{serviciobean.obternerInfoServicioPersona(med.id)}"></f:ajax>
+			</p:commandButton>
 			</p:column>
   		</p:dataTable> 
 	
-		<p:dialog header="Info del Servicio" widgetVar="dlg2" modal="true"  resizable="true">
-    	
-		<h:outputText value="This is a Modal Dialog." />
-	
-		</p:dialog> 
 		
 		
-       <p:dialog header="Dialog" widgetVar="dlg" dynamic="true">
-         <h:dataTable value="#{serviciobean.allData}" var="con" class="table">
+		
+       <p:dialog header="Dialog" widgetVar="dlg" modal="true"  resizable="true">
+         <h:dataTable id="findServicio" value="#{serviciobean.allData}" var="con" >
 		<h:column>
 			<f:facet name="header">Nombre</f:facet>
 			#{con.persona.nombre}
@@ -65,6 +63,9 @@
 		</h:column>
 		</h:dataTable>
        </p:dialog>
+       
+       <br />
+       <h:commandButton action="#{serviciobean.obternerInfoServicioPersona()}" value="probar" />
 	</h:form>
 
 </body> 

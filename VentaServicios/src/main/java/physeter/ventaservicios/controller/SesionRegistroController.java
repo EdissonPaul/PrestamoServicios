@@ -1,8 +1,10 @@
 package physeter.ventaservicios.controller;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 
@@ -18,10 +20,18 @@ public class SesionRegistroController implements Serializable {
 	
 	private List<Persona> listPersonas;
 	
+	private SesionController sesionController;
 	
 	private Servicio service;
 	
 	private List<Servicio> listService;
+	
+	@PostConstruct
+	public void init() {
+		//user = sesionController.getPersona();
+		
+		
+	}
 	
 	public Persona getUser() {
 		return user;
@@ -53,6 +63,14 @@ public class SesionRegistroController implements Serializable {
 
 	public void setListService(List<Servicio> listService) {
 		this.listService = listService;
+	}
+
+	public SesionController getSesionController() {
+		return sesionController;
+	}
+
+	public void setSesionController(SesionController sesionController) {
+		this.sesionController = sesionController;
 	}
 
 	

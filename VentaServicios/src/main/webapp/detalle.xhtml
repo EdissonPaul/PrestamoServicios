@@ -18,7 +18,48 @@
 Villa in Melbourne </a>
 </h1>-->
 <span class="location">
-#{profesionController.categoriaa.nombre}</span>
+<h3 class="noo-box-title">Categoria </h3>
+#{profesionController.servicio.categoria.nombre}</span>
+<h3 class="noo-box-title">Ciudad </h3>
+#{profesionController.servicio.ciudad.nombre}
+
+<h3 class="noo-box-title">Experiencia </h3>
+#{profesionController.servicio.experiencia}
+
+<h3 class="noo-box-title">Habilidades </h3>
+#{profesionController.servicio.hablidades}
+
+<h3 class="noo-box-title">Nombre </h3>
+#{profesionController.servicio.persona.nombre}
+
+<h3 class="noo-box-title">Telefono </h3>
+#{profesionController.servicio.persona.telefono}
+
 </div>
+
+
+
+<h:form>
+<div>
+<h5>Estrellas </h5>
+Calificar: <h:inputText value="#{profesionController.estrellas}" />
+
+<h:commandButton action="#{profesionController.agregarEstrellas()}" value="Enviar" />
+</div>
+
+
+<div class="widget-content nopadding">
+			<h:dataTable id="customers" var="com" value="#{propiedadController.listComentarios}" styleClass="employeeTable"
+			      headerClass="employeeTableHeader"
+			      rowClasses="employeeTableOddRow,employeeTableEvenRow"  width="100%" >
+			<h:column>
+			<h:outputLabel style="color: #085F78; font-style:italic "  value="#{com.comentario} " />
+			</h:column>
+					
+			</h:dataTable>			
+</div>
+
+</h:form>
+
 </body> 
 </html>

@@ -1,12 +1,15 @@
 package physeter.ventaservicios.controller;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
+import javax.servlet.http.Part;
 
 import physeter.ventaservicios.DAO.LoginDAO;
 import physeter.ventaservicios.DAO.PersonaDAO;
@@ -43,6 +46,8 @@ public class PersonaController implements Serializable{
 	
 	
 	
+	private Part file;
+	
 	public Profesion getProfesion() {
 		return Profesion;
 	}
@@ -75,6 +80,18 @@ public class PersonaController implements Serializable{
 		this.sesionRegistroController = sesionRegistroController;
 	}
 	
+	
+	
+	
+
+	public Part getFile() {
+		return file;
+	}
+
+	public void setFile(Part file) {
+		this.file = file;
+	}
+
 	@PostConstruct
 	public void init(){
 		persona = new Persona();
@@ -128,7 +145,7 @@ public class PersonaController implements Serializable{
 			//profesionController.validarDatosRegistro(persona);
 			System.out.println(persona.getCorreo()+" .. uno");
 			sesionRegistroController.setUser(persona);
-			return "registrodatos";
+			return "probar1";
 			//String pagina = registrarPersona();
 			//return pagina;
 			//System.out.println("entro");
@@ -204,6 +221,17 @@ public class PersonaController implements Serializable{
 	
 	public String logout(){
 		persona = null;
+		return null;
+	}
+	
+	public String cargarImagen() throws IOException{
+		InputStream input;
+		
+		input = file.getInputStream();
+		byte[] b = new byte[(int) file.getSize()];
+		file.getInputStream().read(b);
+		persona.setFoto(b);
+		
 		return null;
 	}
 }

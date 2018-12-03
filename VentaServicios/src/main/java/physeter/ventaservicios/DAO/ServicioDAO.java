@@ -8,6 +8,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 
+
+import physeter.ventaservicios.modelo.Revision;
 import physeter.ventaservicios.modelo.Servicio;
 
 @Stateless
@@ -70,7 +72,19 @@ public class ServicioDAO {
 		return s;
 	}
 	
+	public List<Revision> leer2(int ids) {
+		String jpql = "Select r From Revision r, Servicio s where s.id = r.servicio and s.id = :ids";
+				Query query = em.createQuery(jpql,Revision.class);
+
+				query.setParameter("ids", ids);
+				List<Revision> listado =query.getResultList();
+				System.out.println(listado.size());
+				return listado;
+	}
+	
 	public List<Servicio> listServicio(){
+		
+		
 		String jpql = "Select p.* From Servicio p";
 		Query query = em.createNativeQuery(jpql,Servicio.class);
 		List<Servicio> listado = query.getResultList();
@@ -79,11 +93,19 @@ public class ServicioDAO {
 	}
 	
 	public List<Servicio> getServicio(int id){
-		String jpql = "Select p From Servicio p where p.id LIKE :id_servicio";
-		Query query = em.createNativeQuery(jpql,Servicio.class);
-		query.setParameter("id_servicio", id);
-		List<Servicio> listado = query.getResultList();
-		System.out.println(listado.size());
-		return listado;
+		
+		
+		Query query = em.createQuery("SELECT a FROM Servicio a WHERE id = :id",Servicio.class);
+		
+		query.setParameter("id", id);
+		
+		
+		List<Servicio> p=  query.getResultList();
+		
+		
+		return p;
 	}
+	
+	
+	
 }

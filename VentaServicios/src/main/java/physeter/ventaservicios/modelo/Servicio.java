@@ -1,7 +1,9 @@
 package physeter.ventaservicios.modelo;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -53,9 +55,8 @@ public class Servicio implements Serializable{
 	@JoinColumn(name="CAT_ID")
 	private Categorias categoria;
 	
-	@ManyToOne
-	@JoinColumn(name="REV_ID")
-	private Revision revision;
+	@OneToMany(mappedBy="servicio",cascade=CascadeType.ALL)
+	private List<Revision> revision;
 
 	public int getId() {
 		return id;
@@ -135,6 +136,16 @@ public class Servicio implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	public List<Revision> getRevision() {
+		return revision;
+	}
+
+	public void setRevision(List<Revision> revision) {
+		this.revision = revision;
+	}
+
+	
 	
 	
 }

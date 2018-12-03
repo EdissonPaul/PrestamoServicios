@@ -18,15 +18,19 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
+import com.lowagie.text.pdf.codec.Base64;
+
 import physeter.ventaservicios.DAO.CategoriaDao;
 import physeter.ventaservicios.DAO.ProfesionDAO;
 import physeter.ventaservicios.DAO.ProvinciaDAO;
+import physeter.ventaservicios.DAO.RevisionDAO;
 import physeter.ventaservicios.DAO.ServicioDAO;
 import physeter.ventaservicios.modelo.Categorias;
 import physeter.ventaservicios.modelo.Ciudad;
 import physeter.ventaservicios.modelo.Persona;
 import physeter.ventaservicios.modelo.Profesion;
 import physeter.ventaservicios.modelo.Provincia;
+import physeter.ventaservicios.modelo.Revision;
 import physeter.ventaservicios.modelo.Servicio;
 
 @ManagedBean
@@ -34,6 +38,7 @@ import physeter.ventaservicios.modelo.Servicio;
 @SessionScoped
 public class ProfesionController implements Serializable{
 	
+	//@ManagedProperty("#{sesionController}")
 	@Inject
 	private SesionController sesionController;
 
@@ -251,6 +256,7 @@ public class ProfesionController implements Serializable{
 	
 	public void loadDatosEditar(int id){
 		servicio = servicioDAO.leer(id);
+		System.out.println(servicio.getDescripcion()+"......... ...... .....");
 	}
 
 	public List<Servicio> getListServicio() {
@@ -259,6 +265,17 @@ public class ProfesionController implements Serializable{
 
 	public void setListServicio(List<Servicio> listServicio) {
 		this.listServicio = listServicio;
+	}
+	
+	
+	private List<Revision> listRevision;
+	
+	public List<Revision> getListRevision() {
+		return listRevision;
+	}
+
+	public void setListRevision(List<Revision> listRevision) {
+		this.listRevision = listRevision;
 	}
 
 	@PostConstruct
@@ -329,6 +346,33 @@ public class ProfesionController implements Serializable{
 			profesionDAO.insertaraProfesion(profesion);
 			servicioDAO.insertaraServicio(servicio);
 			init();
+		
+		}
+		
+		return null;
+	}
+	
+	public String validarDatosRegistro1(){
+		
+		errUsuario = "";
+		
+		
+		if(errUsuario.equals("")){
+			System.out.println(servicio.getCiudad().getNombre());
+			System.out.println(servicio.getCiudad().getProvincia().getNombre());
+			
+			
+			System.out.println(sesionController.getPersona().getNombre());
+			System.out.println(servicio.getDescripcion());
+			
+			
+			//profesion.setPersona(sesionController.getPersona());
+			//servicio.setPersona(sesionController.getPersona());
+			
+			//personaController.registrarPersona();
+			//profesionDAO.insertaraProfesion(profesion);
+			//servicioDAO.insertaraServicio(servicio);
+			//init();
 		
 		}
 		
@@ -410,7 +454,65 @@ public class ProfesionController implements Serializable{
 	
 	
 	private void loadServicio(){
-		listServicio = servicioDAO.listadoServicio("Cuenca", "Docencia");
+		listServicio = servicioDAO.listadoServicio("Cuenca", "Docencia");	
+	}
+	
+	public void probar(){
+		listRevision = servicioDAO.leer2(1);
+		int s=0 ;
+		for(int i=0; i<listRevision.size();i++){
+			System.out.println(listRevision.get(i).getEstrellas());
+		}
 		
+	}
+	
+	
+	public String toBase64(Servicio s){
+		try {
+			byte [] b = s.getPersona().getFoto();
+			return "data:image/jpg;base64,"+Base64.encodeBytes(b);
+		} catch (Exception e) {
+			return null;
+			// TODO: handle exception
+		}
+		
+	}
+	
+	
+	private int estrellas;
+	
+	@Inject
+	private RevisionDAO revisionDAO;
+	
+	@Inject
+	private Revision revision;
+
+	
+
+	public Revision getRevision() {
+		return revision;
+	}
+
+	public void setRevision(Revision revision) {
+		this.revision = revision;
+	}
+
+	public int getEstrellas() {
+		return estrellas;
+	}
+
+	public void setEstrellas(int estrellas) {
+		this.estrellas = estrellas;
+	}
+	
+	public String agregarEstrellas(){
+		if(estrellas>=5||estrellas<=5){
+			System.out.println("entro .... . .. . ...");
+			revision.setEstrellas(estrellas);
+			revision.setServicio(servicio);
+			revisionDAO.insertar(revision);
+			estrellas = 0;
+		}
+		return null;
 	}
 }
