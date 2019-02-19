@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -21,8 +22,7 @@ import physeter.ventaservicios.modelo.Provincia;
 import physeter.ventaservicios.modelo.Servicio;
 
 @ManagedBean(name="serviciobean")
-//@RequestScoped
-@ViewScoped
+@SessionScoped
 public class ServicioController implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -39,7 +39,7 @@ public class ServicioController implements Serializable{
 	
 	private List<Servicio> listServicio1;
 	
-	@Inject
+	
 	private Servicio servicio;
 	
 	@Inject
@@ -112,6 +112,8 @@ public class ServicioController implements Serializable{
 		}
 	}
 	
+	
+	/*
 	public String obternerInfoServicioPersona(int id){
 		System.out.println("entro...........");
 		System.out.println(id);
@@ -122,9 +124,11 @@ public class ServicioController implements Serializable{
 		
 		return null;
 	}
+	*/
 	
 	public String porbar(){
 		
+		System.out.println(servicio.getExperiencia());
 		//System.out.println(sesionController.getPersona().getNombre());
 		
 		//System.out.println(servicio.getCiudad().getProvincia().getNombre());

@@ -16,13 +16,14 @@
 <br/><br/><br/><br/><br/>
 
 	<h:form id="form">
-		<p:dataTable var="med" value="#{serviciobean.allData}" widgetVar="serviciosTabla"
-                 emptyMessage="No se encuentran los medicos" filteredValue="#{serviciobean.servicioFiltrado}">
+		<p:dataTable  var="med" value="#{serviciobean.allData}" widgetVar="serviciosTabla">
                   <f:facet name="header">
+                  <!--  
             <p:outputPanel>
                 <h:outputText value="Buscar todos los campos:" />
                 <p:inputText id="globalFilter" onkeyup="PF('seriviciosTabla').filter()" style="width:150px" placeholder="Enter keyword"/>
             </p:outputPanel>
+            -->
             </f:facet>
             <p:column filterBy="#{med.categoria.nombre}" headerText="Categorias" footerText="contains" filterMatchMode="contains">
             <h:outputText value="#{med.categoria.nombre}" />
@@ -34,38 +35,46 @@
             <h:outputText value="#{med.descripcion}" />
        		</p:column>
 	        <p:column> 
-			<p:commandButton id="more" value="Mas Informacion" onclick="PF('dlg').show();"  >
-			<f:ajax render="findServicio" execute="more" listener="#{serviciobean.obternerInfoServicioPersona(med.id)}"></f:ajax>
-			</p:commandButton>
+	        
+	        
+			<p:commandButton update=":form:carDetail" oncomplete="PF('carDialog').show()" icon="ui-icon-search" title="View">
+                <f:setPropertyActionListener value="#{med}" target="#{serviciobean.servicio}" />
+            </p:commandButton>
 			</p:column>
   		</p:dataTable> 
 	
 		
 		
 		
-       <p:dialog header="Dialog" widgetVar="dlg" modal="true"  resizable="true">
-         <h:dataTable id="findServicio" value="#{serviciobean.allData}" var="con" >
-		<h:column>
-			<f:facet name="header">Nombre</f:facet>
-			#{con.persona.nombre}
-		</h:column>
-		<h:column>
-			<f:facet name="header">Apellido</f:facet>
-			#{con.persona.apellido}
-		</h:column>
-		<h:column>
-			<f:facet name="header">Telefono</f:facet>
-			#{con.persona.telefono}
-		</h:column>
-		<h:column>
-			<f:facet name="header">Experiencia</f:facet>
-			#{con.experiencia}
-		</h:column>
-		</h:dataTable>
-       </p:dialog>
+       <p:dialog header="Datos Personales" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="carDetail" style="text-align:center;">
+	        <h:dataTable id="puntaje" var="pun" value="#{serviciobean.servicio}">
+		        <f:facet name="header">
+		            
+		        </f:facet>
+		        
+		        
+		        <h:column>
+					<f:facet name="header">Nombre</f:facet>
+					#{pun.persona.nombre}
+				</h:column>
+		        
+		        
+		        <h:column>
+					<f:facet name="header">Apellido</f:facet>
+					#{pun.persona.apellido}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Correo</f:facet>
+					#{pun.persona.correo}
+				</h:column>
+	    	</h:dataTable>
+        </p:outputPanel>
+    </p:dialog>
+    
        
-       <br />
-       <h:commandButton action="#{serviciobean.obternerInfoServicioPersona()}" value="probar" />
+
 	</h:form>
 
 </body> 

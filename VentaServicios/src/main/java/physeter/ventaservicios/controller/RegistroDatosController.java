@@ -161,12 +161,20 @@ public class RegistroDatosController {
 	}
 
 	public String probar(){
-		profesion.setPersona(sesionRegistroController.getUser());
-		servicio.setPersona(sesionRegistroController.getUser());
-		personaDAO.insertar(sesionRegistroController.getUser());
-		profesionDAO.insertaraProfesion(profesion);
-		servicioDAO.insertaraServicio(servicio);
-		return null;
+		
+		
+		try{
+			profesion.setPersona(sesionRegistroController.getUser());
+			servicio.setPersona(sesionRegistroController.getUser());
+			personaDAO.insertar(sesionRegistroController.getUser());
+			profesionDAO.insertaraProfesion(profesion);
+			servicioDAO.insertaraServicio(servicio);
+			return "login";
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
 	
 	public String probar1(){

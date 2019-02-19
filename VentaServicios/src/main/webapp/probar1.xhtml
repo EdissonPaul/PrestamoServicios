@@ -3,6 +3,18 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"> 
+      
+      
+       <ui:composition template="/WEB-INF/templateInicial.xhtml">
+ <ui:define name="title">
+ <br />
+ <br />
+ <br />
+ <br />
+    Registro
+ </ui:define>
+ <ui:define name="content"> 
+ 
 
 <h:head></h:head> 
 <body> 
@@ -63,8 +75,12 @@
 		
 		<br/>
 
-	<h:commandButton action="#{registroDatosController.probar()}" value="probar" />
+	<h:commandButton action="#{registroDatosController.probar()}" value="REGISTRARSE" />
 </h:form>
 
 </body> 
+
+ </ui:define>
+ 
+</ui:composition>
 </html>
