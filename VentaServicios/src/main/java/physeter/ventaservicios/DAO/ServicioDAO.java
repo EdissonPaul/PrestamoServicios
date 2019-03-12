@@ -7,8 +7,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-
-
+import physeter.ventaservicios.modelo.Persona;
 import physeter.ventaservicios.modelo.Revision;
 import physeter.ventaservicios.modelo.Servicio;
 
@@ -57,11 +56,17 @@ public class ServicioDAO {
 	}
 
 	
-	public List<Servicio> listadoServicio(String ciu, String cat){
+	public List<Servicio> listadoServicio(){
 		String jpql = "Select p.* From Servicio p";
 		Query query = em.createNativeQuery(jpql,Servicio.class);
 		List<Servicio> listado = query.getResultList();
 		System.out.println(listado.size());
+		
+		for(Servicio s:listado){
+			for(Revision r:s.getRevision()){
+				
+			}
+		}
 		return listado;
 	}
 	

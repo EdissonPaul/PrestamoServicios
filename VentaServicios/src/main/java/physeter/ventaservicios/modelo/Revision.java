@@ -15,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Revision implements Serializable{
 	
@@ -40,8 +42,9 @@ public class Revision implements Serializable{
 	@Column(name = "REV_FECHA")
 	private Date fecha;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="SER_ID")
+	@ManyToOne
+	@JsonIgnore
+	@JoinColumn(name="SER_ID",nullable=false)
 	private Servicio servicio;
 
 	public int getId() {

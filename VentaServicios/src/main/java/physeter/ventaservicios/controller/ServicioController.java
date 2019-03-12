@@ -106,7 +106,7 @@ public class ServicioController implements Serializable{
 	
 	private void loadServicio(){
 		System.out.println("entro ..a.a.a.a..");
-		listServicio1 = servicioDAO.listadoServicio("Cuenca", "Docencia");
+		listServicio1 = servicioDAO.listadoServicio();
 		for (int i = 0; i < listServicio1.size(); i++) {
 			System.out.println(listServicio1.get(i).getCiudad().getNombre());
 		}

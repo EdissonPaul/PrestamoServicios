@@ -8,6 +8,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import physeter.ventaservicios.modelo.Persona;
+import physeter.ventaservicios.modelo.Profesion;
+import physeter.ventaservicios.modelo.Servicio;
 
 
 @Stateless
@@ -100,6 +102,7 @@ public class PersonaDAO {
 			
 			Persona p= (Persona)query.getSingleResult();
 			
+			
 			if (p!= null){
 				return  p;
 			}
@@ -111,6 +114,29 @@ public class PersonaDAO {
 		}
 		
 		return null;
+	}
+	
+	
+	
+	public List<Persona> getPersona(String correo, String contrasena){
+		
+		String jpaql="SELECT a FROM Persona a WHERE correo = :correo AND contrasena = :contrasena";
+		Query query=em.createQuery(jpaql);
+		query.setParameter("correo", correo);
+		query.setParameter("contrasena", contrasena);
+		
+		List<Persona> listPersona= query.getResultList();
+		
+		for(Persona pe:listPersona){
+			for(Profesion pro:pe.getProfesion()){
+				
+			}
+			for(Servicio s:pe.getServicio()){
+				
+			}
+		}
+		
+		return listPersona;
 	}
 
 }

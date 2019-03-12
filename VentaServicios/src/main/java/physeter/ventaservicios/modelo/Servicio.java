@@ -43,7 +43,8 @@ public class Servicio implements Serializable{
 	private String direccion;
 	
 	@ManyToOne
-	@JoinColumn(name="PER_ID")
+	@JsonIgnore
+	@JoinColumn(name="PER_ID",nullable=false)
 	private Persona persona;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
@@ -52,10 +53,11 @@ public class Servicio implements Serializable{
 	private Ciudad ciudad;
 	
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name="CAT_ID")
 	private Categorias categoria;
 	
-	@OneToMany(mappedBy="servicio",cascade=CascadeType.ALL)
+	@OneToMany(fetch=FetchType.EAGER,mappedBy="servicio",cascade=CascadeType.ALL)
 	private List<Revision> revision;
 
 	public int getId() {

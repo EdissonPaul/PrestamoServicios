@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import javax.enterprise.inject.New;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -58,7 +59,7 @@ public class Persona implements Serializable {
 	private List<Profesion> profesion = new ArrayList<Profesion>();
 	
 	@OneToMany(mappedBy="persona",cascade=CascadeType.ALL)
-	private List<Servicio> servicio;
+	private List<Servicio> servicio = new ArrayList<Servicio>();
 
 	public int getId() {
 		return id;

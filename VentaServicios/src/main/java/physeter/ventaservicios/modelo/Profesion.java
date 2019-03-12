@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Profesion implements Serializable{
 
@@ -32,8 +34,10 @@ public class Profesion implements Serializable{
 	private String profesion;
 	
 	
+	//@ManyToOne(fetch=FetchType.LAZY)
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name ="PER_ID")
+	@JsonIgnore
+	@JoinColumn(name ="PER_ID",nullable=false)
 	private Persona persona;
 
 

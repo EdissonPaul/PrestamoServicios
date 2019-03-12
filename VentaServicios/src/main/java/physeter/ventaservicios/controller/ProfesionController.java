@@ -454,7 +454,7 @@ public class ProfesionController implements Serializable{
 	
 	
 	private void loadServicio(){
-		listServicio = servicioDAO.listadoServicio("Cuenca", "Docencia");	
+		listServicio = servicioDAO.listadoServicio();	
 	}
 	
 	public void probar(){
